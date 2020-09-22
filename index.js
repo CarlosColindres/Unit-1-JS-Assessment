@@ -30,7 +30,7 @@ function getName(character) {
  */
 function getFilmCount(character) {
   // TODO: Add your code inside the functions (others below).
-
+    return character.films.length;
 }
 
 /**
@@ -43,6 +43,10 @@ function getFilmCount(character) {
 */
 function getSecondStarshipName(character) {
   // TODO: Add your code here.
+  if(character.starships.length > 0) {
+    return character.starships[1].name;
+  }
+  return 'none'
 }
 
 /**
@@ -56,6 +60,7 @@ function getSecondStarshipName(character) {
  */
 function getSummary(character) {
   // TODO: Add your code here.
+  return `${character.name}, ${Number(character.height)}cm, ${Number(character.mass)}kg. Featured in ${character.films.length} films.`
 }
 
 /**
@@ -68,6 +73,8 @@ function getSummary(character) {
 */
 function getVehiclesCostInCreditsSumTotal(character) {
   // TODO: Add your code here.
+  const num = character.vehicles.map(a => a.cost_in_credits)
+  return num.reduce((a,b) => a+b, 0)
 }
 
 /**
@@ -81,7 +88,11 @@ function getVehiclesCostInCreditsSumTotal(character) {
  * Sample data expected output: 27
 */
 function getStarshipPassengerAndCrewSumTotal(character) {
-  // TODO: Add your code here.
+  const arr = [];
+  character.starships.forEach(element => {
+    arr.push(element.crew + element.passengers)
+  });
+  return arr.reduce((a,b) => a+b,0)
 }
 
 /**
@@ -99,6 +110,10 @@ function getStarshipPassengerAndCrewSumTotal(character) {
 */
 function getNthFilm(character, filmNumber) {
   // TODO: Add your code here.
+  if (filmNumber < 4) {
+    return character.films[filmNumber - 1]
+  }
+  return "There are only 3 Star Wars movies. Flan fiction excluded."
 }
 
 /**
@@ -113,6 +128,14 @@ function getNthFilm(character, filmNumber) {
 */
 function getCargoCapacityTotal(character) {
   // TODO: Add your code here.
+  const arr = [];
+  character.starships.forEach(element =>
+    arr.push(Number(element.cargo_capacity))
+  );
+  character.vehicles.forEach(element =>
+    arr.push(Number(element.cargo_capacity))
+  );
+  return arr.reduce((a,b) => a+b,0)
 }
 
 /**
@@ -127,7 +150,7 @@ function getCargoCapacityTotal(character) {
  * Sample data expected output: `X-wing`
 */
 function getFastestStarshipName(character) {
-  // TODO: Add your code here.
+  
 }
 
 /**
